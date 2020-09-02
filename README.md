@@ -1,6 +1,7 @@
 # GettingandCleaningData
 
 Peer Graded Task: Getting and Cleaning Data Course Project
+
 This repository is a presentation by Gustavo García for the Getting and Cleaning Data course project. Contains instructions on how to run the analysis on the human activity recognition dataset.
 
 ## Recognition of human activity using the smartphone dataset
