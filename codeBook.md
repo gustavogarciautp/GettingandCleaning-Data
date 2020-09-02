@@ -1,52 +1,55 @@
-El script run_analysis.R realiza la preparación y limpieza de los datos siguiendo los 5 pasos descritos en la definición del proyecto del curso.
+# Code Book
 
-Descarga de datos
-En primer lugar descargué el conjunto de datos y extraje el archivo ZIP resultante en la carpeta llamada UCI HAR Dataset.
+The run_analysis.R script performs the preparation and cleaning of the data following the 5 steps described in the definition of the course project.
 
-Lectura de datos
-A continuación, realice la lectura de los archivos incluidos en el dataset, los cuales fueron almacenados en variables distintas:
+## Data download
+First of all I downloaded the dataset and extracted the resulting ZIP file into the folder called UCI HAR Dataset.
 
-La variable features almacena features.txt formado por 561 filas y 2 columnas. Esta variable provee a 561-feature vector with time and frequency domain variables.
+## Reading data
+Next, read the files included in the dataset, which were stored in different variables:
 
-La variable activities almacena activity_labels.txt formado por 6 filas y 2 columnas. This file links the class labels with their activity name.
+The features variable stores features.txt made up of 561 rows and 2 columns. This variable provides 561-feature vector with time and frequency domain variables.
 
-La variable x_train almacena X_train.txt formado por 7352 filas y 561 columnas. Corresponde a los datos de entrenamiento. 
+The activities variable stores activity_labels.txt made up of 6 rows and 2 columns. This file links the class labels with their activity name.
 
-La variable y_train almacena y_train.txt formado por 7352 filas y 1 columna. Contiene las etiquetas de los datos de entrenamiento (código de actividades). 
+The variable x_train stores X_train.txt made up of 7352 rows and 561 columns. Corresponds to training data.
 
-La variable subject_train almacena subject_train.txt formado por 7352 filas y 1 columna. Este archivo contiene los identificadores de 21/30 voluntarios que realizaron el experimento.
+The variable y_train stores y_train.txt made up of 7352 rows and 1 column. It contains the labels of the training data (activity code).
 
-La variable x_test almacena X_test.txt formado por 2947 filas y 561 columnas. Corresponde a los datos de prueba. 
+The subject_train variable stores subject_train.txt made up of 7352 rows and 1 column. This file contains the identifiers of 21/30 volunteers who performed the experiment.
 
-La variable y_test almacena y_test.txt formado por 2947 filas y 1 columna. Contiene las etiquetas de los datos de prueba (código de actividades). 
+The variable x_test stores X_test.txt made up of 2947 rows and 561 columns. It corresponds to the test data.
 
-La variable subject_test almacena subject_test.txt formado por 2947 filas y 1 columna. Este archivo contiene los identificadores de 9/30 voluntarios que realizaron el experimento.
+The variable y_test stores y_test.txt made up of 2947 rows and 1 column. Contains the labels of the test data (activity code).
 
-Combinando los datos
-El siguiente paso fue combinar el conjuntos de datos de entrenamiento y sus etiquetas para crear un conjunto de datos train (7352 filas, 564 columnas) mediante la funcion cbind(). El conjunto de datos de prueba y sus etiquetas se unen para crear un conjunto de datos test (2947 filas, 564 columnas) mediante la funcion cbind(). Finalmente, data (10299 filas, 564 columnas) se crea combinando train y test usando la función rbind().
+The subject_test variable stores subject_test.txt made up of 2947 rows and 1 column. This file contains the identifiers of 9/30 volunteers who performed the experiment.
 
-Extracts only the measurements on the mean and standard deviation for each measurement
-En este paso se actualiza la variable data (datos fusionados) seleccionando solo las columnas: IdSubject, Label y las medidas de la media y la desviación estándar (std) para cada medición. Esto genera un nuevo conjunto de datos con 
-10299 filas y 88 columnas.
+## Combining the data
+The next step was to combine the training data sets and their labels to create a train data set (7352 rows, 564 columns) using the cbind () function. The test data set and its labels are joined to create a test data set (2947 rows, 564 columns) using the cbind () function. Finally, data (10299 rows, 564 columns) is created by combining train and test using the rbind () function.
 
-Uses descriptive activity names to name the activities in the data set
-Aqui se reemplazan todos los valores numericos de la columna Label de data por los nombres de las actividades correspondientes tomadas de la segunda columna de la variable activities.
+## Extracts only the measurements on the mean and standard deviation for each measurement
 
-Appropriately labels the data set with descriptive variable names
-En este paso se llevan a cabo los siguientes cambios en los nombres de las columnas de data:
+In this step, the data variable (merged data) is updated by selecting only the columns: IdSubject, Label and the measures of the mean and standard deviation (std) for each measurement. This generates a new data set with
+10299 rows and 88 columns.
 
-- La columna Label en data se renombra a Activity 
-- Todos los Acc son reemplazados por Accelerometer 
-- Todos los Gyro son reemplazados por Gyroscope 
-- Todos los nombres que comiencen con el caracter t son reeemplazados por Time.
-- Todos los nombres que comiencen con el caracter f son reeemplazados por Frequency.
-- Todos los puntos son eliminados.
-- Todos los Mag son reemplazados por Magnitude
-- angle es reeemplazo por Angle
-- gravity es reemplazo por Gravity
-- Todo BodyBody es reemplazado por Body
-- mean es reeemplazo por Mean
-- std es reeemplazado por STD
+## Uses descriptive activity names to name the activities in the data set
+Here all the numerical values of the Data Label column are replaced by the names of the corresponding activities taken from the second column of the activities variable.
 
-Creates a second, independent tidy data set with the average of each variable for each activity and each subject
-data2 (180 filas, 88 columnas) se crea agrupando data por las columnas IdSubject y Activity y finalmente tomando the average of each variable for each activity and each subject. El conjunto de datos obtenido se exporta al archivo Data.txt.
+## Appropriately labels the data set with descriptive variable names
+In this step, the following changes are made to the names of the data columns:
+
+- The Label column in data is renamed to Activity
+- All Acc are replaced by Accelerometer
+- All Gyro are replaced by Gyroscope
+- All names starting with the character t are replaced by Time.
+- All names beginning with the character f are replaced by Frequency.
+- All points are removed.
+- All Mag are replaced by Magnitude
+- angle is replaced by Angle
+- gravity is replacement for Gravity
+- All BodyBody is replaced by Body
+- mean is replaced by Mean
+- std is replaced by STD
+
+## Creates a second, independent tidy data set with the average of each variable for each activity and each subject
+data2 (180 rows, 88 columns) is created by grouping data by the IdSubject and Activity columns and finally taking the average of each variable for each activity and each subject. The data set obtained is exported to the Data.txt file.
